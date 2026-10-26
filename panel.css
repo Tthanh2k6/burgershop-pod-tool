@@ -1,0 +1,105 @@
+#pod-helper {
+  position: fixed;
+  top: 80px;
+  right: 16px;
+  z-index: 2147483000;
+  width: 330px;
+  max-height: calc(100vh - 100px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  color: #1f2937;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18);
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+#pod-helper * { box-sizing: border-box; }
+#pod-helper.collapsed { width: auto; }
+#pod-helper.collapsed .pod-body { display: none; }
+#pod-helper.busy .pod-run .pod-btn { opacity: 0.55; pointer-events: none; }
+
+#pod-helper .pod-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 12px; background: #1d4ed8; color: #fff; border-radius: 9px 9px 0 0;
+}
+#pod-helper.collapsed .pod-head { border-radius: 9px; }
+#pod-helper .pod-head { cursor: move; user-select: none; }
+#pod-helper.dragging { opacity: 0.9; box-shadow: 0 12px 36px rgba(0, 0, 0, 0.28); }
+#pod-helper .pod-title { font-weight: 600; }
+#pod-helper .pod-icon { background: none; border: 0; color: #fff; font-size: 18px; cursor: pointer; line-height: 1; }
+
+#pod-helper .pod-body { overflow-y: auto; padding: 10px 12px 12px; }
+#pod-helper .pod-run { display: grid; gap: 6px; margin-bottom: 6px; }
+#pod-helper .pod-btn {
+  padding: 8px 10px; border: 1px solid #1d4ed8; border-radius: 6px; cursor: pointer;
+  background: #fff; color: #1d4ed8; font-weight: 600; text-align: left; font-size: 13px;
+}
+#pod-helper .pod-btn.primary { background: #1d4ed8; color: #fff; }
+#pod-helper .pod-btn:hover { filter: brightness(0.95); }
+#pod-helper .pod-mini {
+  padding: 4px 8px; border: 1px solid #d1d5db; border-radius: 5px; background: #f9fafb;
+  cursor: pointer; font-size: 12px; color: #374151;
+}
+
+#pod-helper details { border-top: 1px solid #e5e7eb; padding: 6px 0; }
+#pod-helper summary { cursor: pointer; font-weight: 600; padding: 2px 0; }
+#pod-helper .pod-count { font-weight: 400; color: #6b7280; }
+#pod-helper label { display: block; margin-top: 6px; color: #4b5563; font-size: 12px; }
+#pod-helper input:not([type="checkbox"]):not([type="radio"]), #pod-helper textarea {
+  display: block; width: 100%; margin-top: 2px; padding: 5px 7px; font: inherit; color: #111827;
+  border: 1px solid #d1d5db; border-radius: 5px; background: #fff;
+}
+#pod-helper textarea { resize: vertical; }
+#pod-helper .pod-check { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; color: #374151; }
+#pod-helper .pod-inline { display: inline-flex; align-items: center; gap: 4px; margin: 0; }
+#pod-helper .pod-inline input { width: 70px !important; margin: 0 !important; }
+#pod-helper .pod-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 6px; }
+#pod-helper .pod-row .pod-addtag { flex: 1; }
+#pod-helper .pod-prices { flex-wrap: nowrap; margin-top: 0; }
+#pod-helper .pod-prices label { flex: 1; min-width: 0; }
+
+#pod-helper .pod-chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+#pod-helper .pod-tags { max-height: 150px; overflow-y: auto; }
+#pod-helper .pod-chip {
+  padding: 2px 8px; border: 1px solid #d1d5db; border-radius: 999px; background: #fff;
+  cursor: pointer; font-size: 12px; color: #374151;
+}
+#pod-helper .pod-chip.on { background: #1d4ed8; border-color: #1d4ed8; color: #fff; }
+
+#pod-helper .pod-status[hidden] { display: none; }
+#pod-helper .pod-status {
+  display: flex; align-items: center; gap: 8px; margin: 2px 0 6px; padding: 7px 9px;
+  background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 6px;
+  color: #1e40af; font-weight: 600; font-size: 12px;
+}
+#pod-helper .pod-status::before {
+  content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%;
+  border: 2px solid #93c5fd; border-top-color: #1d4ed8; animation: pod-spin 0.8s linear infinite;
+}
+@keyframes pod-spin { to { transform: rotate(360deg); } }
+#pod-helper .pod-issues:empty { display: none; }
+#pod-helper .pod-issues {
+  margin: 8px 0 4px; padding: 8px; border-radius: 6px; font-size: 12px;
+  max-height: 260px; overflow-y: auto;
+}
+#pod-helper .pod-issues.has { background: #fef2f2; border: 1px solid #fecaca; }
+#pod-helper .pod-issues.clean { background: #ecfdf5; border: 1px solid #a7f3d0; color: #047857; }
+#pod-helper .pod-issues-head { font-weight: 600; }
+#pod-helper .pod-issues.has .pod-issues-head { color: #b91c1c; }
+#pod-helper .pod-issues-step { margin-top: 6px; font-weight: 600; color: #374151; }
+#pod-helper .pod-issue {
+  display: flex; align-items: flex-start; gap: 4px; margin: 3px 0 0; color: #7f1d1d; font-size: 12px; cursor: pointer;
+}
+#pod-helper .pod-issue.sub { margin-left: 18px; color: #991b1b; }
+#pod-helper .pod-issue input { margin-top: 2px; flex: none; }
+#pod-helper .pod-issue:has(input:checked) { color: #9ca3af; text-decoration: line-through; }
+#pod-helper .pod-logbox summary { font-weight: 400; color: #6b7280; font-size: 12px; }
+#pod-helper .pod-log {
+  margin-top: 8px; max-height: 160px; overflow-y: auto; white-space: pre-wrap;
+  background: #f3f4f6; border-radius: 6px; padding: 6px; font: 11px/1.35 Consolas, monospace;
+}
+#pod-helper .pod-log:empty { display: none; }
+#pod-helper .pod-log-line.ok { color: #047857; }
+#pod-helper .pod-log-line.warn { color: #b45309; }
+#pod-helper .pod-log-line.err { color: #b91c1c; }

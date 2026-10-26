@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "BurgerShop POD Helper",
+  "version": "1.0.0",
+  "description": "Tự động các bước tạo POD product trên admin.burgershop.io: chọn áo, chọn màu, điền title/mô tả/giá/tag.",
+  "permissions": ["storage"],
+  "host_permissions": ["https://admin.burgershop.io/*"],
+  "content_scripts": [
+    {
+      "matches": ["https://admin.burgershop.io/*"],
+      "js": ["page-bridge.js"],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": ["https://admin.burgershop.io/*"],
+      "js": ["content.js"],
+      "css": ["panel.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
